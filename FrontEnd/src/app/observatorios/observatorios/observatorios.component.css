@@ -1,0 +1,12 @@
+.flex-container-cabecera {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+    flex-direction: row-reverse;
+}
+
+.flex-container-filtros {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+}
