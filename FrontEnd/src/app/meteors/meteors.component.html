@@ -1,0 +1,13 @@
+<select
+  class="form-select"
+  [formControl]="dataRepresentationForm.controls.dataRepresentation"
+>
+  <option *ngFor="let item of dataRepresentationTypes" [ngValue]="item">
+    {{ item | meteorDataRepresentation }}
+  </option>
+</select>
+
+<ng-container [ngSwitch]="dataRepresentationForm.value.dataRepresentation">
+  <app-table-meteors *ngSwitchCase="0"></app-table-meteors>
+  <app-type-distributions *ngSwitchCase="1"></app-type-distributions>
+</ng-container>

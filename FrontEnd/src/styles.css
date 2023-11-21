@@ -1,115 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
 @charset "ISO-8859-1";
-body{
-    background-color: rgb(239, 239, 239);
-    margin: 0;
+
+:root {
+    --oficial-color: #990000;
 }
-header{
-    padding: 20px 20px;
-    background-color: white;
+
+.td {
+    background-color: var(--oficial-color);
+    color: var(--oficial-color);
+}
+
+.flex-container-cabecera {
     display: flex;
-    flex-direction: column;
-    font-size: sans-serif;
-    height: 80px;
-    width: auto;
+    width: 100%;
+    margin: 10px;
+    flex-direction: row-reverse;
 }
-.logo img{
-    height: 35px;
-    width: 275px;
+
+.flex-container-filtros {
+    display: flex;
+    width: 100%;
+    margin: 10px;
 }
-.menu{
-    display:flexbox;
-    background-color: rgb(153, 0, 0);
-    width: fit-content;
-    height: fit-content;
-    align-self: flex-end;
+
+/*Mat calendar utilities*/
+.mat-calendar-header {
+    background: var(--oficial-color);
 }
-.navlink{
-    display:inline-flex;
-    text-decoration: none;
-    color:white;
-    background-color: rgb(153, 0, 0);
-    padding: 13px;
+.mat-mdc-button.mat-unthemed {
+    --mdc-text-button-label-text-color: #fff;
 }
-.menu nav a:hover{
-    background-color:rgb(51, 51, 51);
+.mat-calendar-arrow{
+    fill: white !important
 }
-.consulta{
-	margin: 10px 10px 20px 20px;
-	display: flex;
-	flex-direction: column;
+.mat-calendar-next-button,
+.mat-calendar-previous-button
+{
+    color: white !important;
 }
-.consulta table{
-	background-color: white;
+.mat-datepicker-toggle
+{
+    color: var(--oficial-color) !important;  
 }
-table{
-	text-align: center;
+.mdc-text-field--filled.mdc-text-field--disabled .mdc-floating-label, .mdc-text-field--filled.mdc-text-field--disabled .mdc-floating-label--float-above {
+    color: black !important;
 }
-.filtro{
-	background-color: white;
-	margin-top: 10px;
-	margin-left: 15px;
-	width: fit-content;
-	padding: 5px 5px 5px 5px;
-	border: groove rgb(153,0,0);
-}
-.filtro form{
-	display: flex;
-	flex-direction: column;
-}
-.seleccion{
-	width: 250px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-bottom: 10px;
-}
-.seleccion select{
-	width: 70px;
-}
-.seleccion .informes{
-	width: 90px;
-}
-.datos{
-	margin: 10px 10px 10px 10px;
-	display: flex;
-	flex-direction: column;
-}
-.datos table{
-	background-color: white;
-	border-spacing: 0;
-}
-.datos th{
-	border: groove black;
-	border-collapse: collapse;
-	padding: 4px;
-	background-color: white;
-}
-.datos td{
-	padding: 4px;
-}
-tr:nth-child(odd) {background-color: #f2f2f2;}
-.tit th{
-	border-bottom-width: 0;
-}
-abbr[title] {
-    text-decoration: underline;
-}
-abbr:hover{
-	cursor: pointer;
-}
-.conjunto{
-	margin: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: groove rgb(153,0,0);
-    background-color: white;
-}
-.titulodiv{
-	text-align: center;
-	margin-bottom: -5px;
-}
-.subt{
-	text-align:center;
-	margin-bottom: -2px;
+.mat-calendar-body-selected {
+    background-color: var(--oficial-color) !important;
 }

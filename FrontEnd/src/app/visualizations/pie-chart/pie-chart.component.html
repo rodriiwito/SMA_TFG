@@ -1,0 +1,31 @@
+<svg viewBox="-100 -100 700 500">
+  <g *ngFor="let d of pieArcData; let i = index">
+    <path [attr.fill]="colorScale(i.toString())" [attr.d]="arcPie(d)"></path>
+    <rect
+      x="200"
+      [attr.y]="-80 + i * 25"
+      width="10"
+      height="10"
+      [attr.style]="'fill: ' + colorScale(i.toString())"
+    ></rect>
+    <text
+      x="220"
+      [attr.y]="-71 + i * 25"
+      fill="black"
+      text="d.data.label"
+      text-anchor="left"
+      font-size="10"
+    >
+      <tspan>
+        {{
+          d.data.label +
+            " | Count: " +
+            d.value +
+            " | Percent: " +
+            ((d.data.value * 100) / totalNumber | number : "1.2-2") +
+            "%"
+        }}
+      </tspan>
+    </text>
+  </g>
+</svg>

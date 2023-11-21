@@ -1,0 +1,9 @@
+label {
+    font-weight: bolder;
+}
+
+:host {
+    display: block;
+    background-color: whitesmoke;
+    padding: 20px;
+}

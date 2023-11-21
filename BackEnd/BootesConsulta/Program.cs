@@ -1,4 +1,5 @@
-using BootesConsulta.Database.Repository;
+using BootesConsulta.Database.Repository.Meteors;
+using BootesConsulta.Database.Repository.Observatories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Add Repositories
-builder.Services.AddScoped<IConsultaRepository, ConsultaRepository>();
-
+builder.Services.AddScoped<IMeteorsRepository, MeteorsRepository>();
+builder.Services.AddScoped<IObservatoriesRepository, ObservatoriesRepository>();
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<Program>());
 

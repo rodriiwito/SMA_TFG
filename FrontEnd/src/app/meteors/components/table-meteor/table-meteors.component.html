@@ -1,0 +1,101 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="container">
+    <div class="flex-container-cabecera">
+      <button class="btn" (click)="mostrarFiltros(vm.mostrarFiltros)">
+        Show Filters
+      </button>
+
+      <button
+        *ngIf="vm.mostrarFiltros"
+        class="btn"
+        type="submit"
+        (click)="aplicarFiltros()"
+      >
+        Apply Filters
+      </button>
+
+      <h5 style="margin-top: 5px; margin-right: auto">List of seen meteors</h5>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="vm.mostrarFiltros">
+    <div class="flex-container-filtros">
+      <form [formGroup]="meteorsForm" (ngSubmit)="aplicarFiltros()">
+        <div class="row">
+          <div class="col">
+            <label for="datePicker">Date</label>
+            <mat-form-field class="date">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input
+                [rangePicker]="datePicker"
+                disabled
+                id="datePicker"
+              >
+                <input
+                  matStartDate
+                  placeholder="Start date"
+                  formControlName="minimunDate"
+                />
+                <input
+                  matEndDate
+                  placeholder="End date"
+                  formControlName="maximumDate"
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="datePicker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker
+                #datePicker
+                disabled="false"
+              ></mat-date-range-picker>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <label>Report Types</label>
+            <select
+              class="form-select"
+              multiple
+              [formControl]="meteorsForm.controls.reportTypes"
+            >
+              <option *ngFor="let item of reportTypes" [ngValue]="item">
+                {{ item | reportType }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <table
+      class="table my-3 table-bordered"
+      *ngIf="vm.meteors?.meteors && vm.meteors?.meteors?.length"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">One Station Reports</th>
+          <th scope="col">Two Stations Reports</th>
+          <th scope="col">Photometry Reports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let meteor of vm.meteors?.meteors"
+          (click)="navigateDetail(meteor.id)"
+        >
+          <td>{{ meteor.date | date : "dd/MM/yyyy hh:mm:ss.SSS" }}</td>
+          <td>{{ meteor.oneStationReports }}</td>
+          <td>{{ meteor.twoStationsReports }}</td>
+          <td>{{ meteor.photometryReports }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="!vm.meteors || !vm.meteors?.meteors?.length">
+      Didn't find meteors
+    </p>
+  </div>
+</ng-container>

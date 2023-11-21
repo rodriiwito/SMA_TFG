@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
@@ -61,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "BootesWeb:build:production"
+              "buildTarget": "BootesWeb:build:production"
             },
             "development": {
-              "browserTarget": "BootesWeb:build:development"
+              "buildTarget": "BootesWeb:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "BootesWeb:build"
+            "buildTarget": "BootesWeb:build"
           }
         },
         "test": {
@@ -88,6 +89,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
