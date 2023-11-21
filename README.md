@@ -1,6 +1,6 @@
 # Welcome to Sociedad Malagueña de Astronomia
-Instalacion
-<img height="150" src="FrontEnd/src/favicon.ico"></img>
+
+<img height="50" src="FrontEnd/src/favicon.ico"></img>
 
 ## Front End
 It can be find In the folder FrontEnd, is an Angular project, so we run the usual commands on download.
