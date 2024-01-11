@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ObservatoriesComponent } from './observatories/observatories/observatories.component';
-import { MeteorsComponent } from './meteors/meteors.component';
-import { MeteorDetailComponent } from './meteors/components/meteor-detail/meteor-detail.component';
+import { LoginComponent } from './authorization/login/login.component';
+import { authGuard } from './auth-guard';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './authorization/register/register.component';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
     path: '',
-    component: HomeComponent,
+    canActivate: [authGuard],
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./navbar/routes').then((mod) => mod.USER_ROUTES),
   },
-  {
-    path: 'observatories',
-    component: ObservatoriesComponent,
-  },
-  {
-    path: 'meteors',
-    component: MeteorsComponent,
-  },
-  {
-    path: 'meteors/:id',
-    component: MeteorDetailComponent,
-  },
+  { path: '**', redirectTo: '' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

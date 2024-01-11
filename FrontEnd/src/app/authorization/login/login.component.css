@@ -1,0 +1,26 @@
+.form-group-container{
+    display:grid;
+    grid-auto-flow:row;
+    row-gap: 1em;
+}
+
+.form-row-group-container{
+  display:grid;
+  grid-auto-flow: column;
+  column-gap: 1em;
+  margin-bottom: 1em;
+}
+
+img {
+    width: 20%;
+    margin: 1em 0em 2em 0em;
+  }
+.container{
+   width: 25%;
+   margin-top: 10em;
+}
+
+.btn{
+  background-color: var(--oficial-color);
+  color: whitesmoke
+}

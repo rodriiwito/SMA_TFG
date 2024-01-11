@@ -1,19 +1,42 @@
-using BootesConsulta.Database.Repository.Meteors;
-using BootesConsulta.Database.Repository.Observatories;
+using BootesConsulta.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//Add Auth
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(opt =>
+    {
+        opt.TokenValidationParameters = new()
+        {
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            ValidateLifetime = true,
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+builder.Services.AddAuthorization();
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+//Swagger
 builder.Services.AddSwaggerGen();
 
 //Add Repositories
-builder.Services.AddScoped<IMeteorsRepository, MeteorsRepository>();
-builder.Services.AddScoped<IObservatoriesRepository, ObservatoriesRepository>();
+ServiceExtensions.AddRepositories(builder.Services);
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<Program>());
 
@@ -30,8 +53,10 @@ app.UseHttpsRedirection();
 
 app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization();
 
 await app.RunAsync();

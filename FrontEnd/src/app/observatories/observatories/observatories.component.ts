@@ -7,18 +7,21 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ObservatoriesService } from 'src/app/services/observatories/observatories.service';
 import {
   ObservatoriesRequest,
   ObservatoriesResponse,
 } from 'src/app/services/models';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-observatories',
   templateUrl: './observatories.component.html',
   styleUrls: ['./observatories.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class ObservatoriesComponent {
   private _mostrarFiltros$ = new BehaviorSubject<boolean>(false);
