@@ -2,7 +2,7 @@
   <div class="container">
     <div class="flex-container-cabecera">
       <button class="btn" (click)="showFilters(vm.mostrarFiltros)">
-        Mostrar Filtros
+        {{ "TableUtil.ShowFilters" | translate }}
       </button>
 
       <button
@@ -11,11 +11,11 @@
         type="submit"
         (click)="applyFilters()"
       >
-        Aplicar Filtros
+        {{ "TableUtil.ApplyFilters" | translate }}
       </button>
 
       <h5 style="margin-top: 5px; margin-right: auto">
-        Listado de observatories activos
+        {{ "Observatories.Table.Title" | translate }}
       </h5>
     </div>
   </div>
@@ -24,23 +24,27 @@
       <form [formGroup]="observatoriesForm" (ngSubmit)="applyFilters()">
         <div class="row">
           <div class="col">
-            <label for="nombre">Nombre Observatorio</label>
+            <label for="nombre">{{
+              "Observatories.Table.Filters.ObservatoryName" | translate
+            }}</label>
             <input
               type="text"
               class="form-control"
               id="filtro-nombre"
-              placeholder="Nombre"
+              placeholder="{{ 'GenericWords.Name' | translate }}"
               formControlName="nombre"
             />
           </div>
           <div class="col">
-            <label for="filtro-altura">Altura</label>
+            <label for="filtro-altura">{{
+              "GenericWords.Height" | translate
+            }}</label>
             <input
               type="number"
               min="0"
               class="form-control"
               id="filtro-altura"
-              placeholder="Mínima"
+              placeholder="{{ 'GenericWords.Minimum' | translate }}"
               formControlName="alturaMinima"
             />
             <input
@@ -48,7 +52,7 @@
               min="0"
               class="form-control"
               id="filtro-altura"
-              placeholder="Máxima"
+              placeholder="{{ 'GenericWords.Maximum' | translate }}"
               formControlName="alturaMaxima"
             />
           </div>
@@ -67,12 +71,14 @@
     >
       <thead>
         <tr>
-          <th scope="col">Numero</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Longitud</th>
-          <th scope="col">Latitud</th>
-          <th scope="col">Altura</th>
-          <th scope="col">Créditos</th>
+          <th scope="col">
+            {{ "GenericWords.Number" | translate }}
+          </th>
+          <th scope="col">{{ "GenericWords.Name" | translate }}</th>
+          <th scope="col">{{ "GenericWords.Longitude" | translate }}</th>
+          <th scope="col">{{ "GenericWords.Latitude" | translate }}</th>
+          <th scope="col">{{ "GenericWords.Height" | translate }}</th>
+          <th scope="col">{{ "GenericWords.Credits" | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -87,7 +93,7 @@
       </tbody>
     </table>
     <p *ngIf="!vm.observatories || !vm.observatories?.observatories?.length">
-      No se han encontrado observatories
+      {{ "Observatories.Table.Error" | translate }}
     </p>
   </div>
 </ng-container>

@@ -5,6 +5,7 @@ import { DataRepresentationsMeteorsPipe } from './util/meteor-data-representatio
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataRepresentationsMeteors } from './models/data-representations-meteors';
 import { TypeDistributionsComponent } from './components/type-distributions/type-distributions.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -19,6 +20,7 @@ import { TypeDistributionsComponent } from './components/type-distributions/type
     DataRepresentationsMeteorsPipe,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
 })
 export class MeteorsComponent {

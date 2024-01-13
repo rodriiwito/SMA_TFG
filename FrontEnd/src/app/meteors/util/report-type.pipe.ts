@@ -7,16 +7,16 @@ import { ReportType } from 'src/app/services/models/enums/report-type';
 })
 export class ReportTypePipe implements PipeTransform {
   transform(value: ReportType): string {
-    let reportTypeString: string = '';
+    let reportTypeString: string = 'Pipes.ReportTypePipe.';
     switch (value) {
       case ReportType.DosEstaciones:
-        reportTypeString = 'Two Stations';
+        reportTypeString += 'TwoStations';
         break;
       case ReportType.Fotometria:
-        reportTypeString = 'Photometry';
+        reportTypeString += 'Photometry';
         break;
       case ReportType.UnaEstacion:
-        reportTypeString = 'One Station';
+        reportTypeString += 'OneStation';
         break;
     }
     return reportTypeString;

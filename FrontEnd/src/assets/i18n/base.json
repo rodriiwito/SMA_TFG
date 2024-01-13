@@ -1,0 +1,66 @@
+{
+    "Navbar": {
+        "Home": "",
+        "Observatories": "",
+        "Meteors": "",
+        "Language": ""
+    },
+    "Home": {
+        "Welcome": "",
+        "Body": ""
+    },
+    "Observatories": {
+        "Table": {
+            "Title": "",
+            "Filters": {
+                "ObservatoryName": ""
+            },
+            "Error": ""
+        }
+    },
+    "Meteors": {
+        "Table": {
+            "Title": "",
+            "Filters": {
+                "ReportTypes": ""
+            },
+            "Headers": {
+                "OneStationReports": "",
+                "TwoStationsReports": "",
+                "PhotometryReports": ""
+            },
+            "Error": ""
+        }
+    },
+    "Pipes": {
+        "MeteorDataRepresentation": {
+            "Table": "",
+            "TypePieChart": "" 
+        },
+        "ReportTypePipe": {
+            "TwoStations":"",
+            "Photometry":"",
+            "OneStation":""
+        }
+    },
+    "TableUtil": {
+        "ApplyFilters": "",
+        "ShowFilters": ""
+    },
+    "GenericWords": {
+        "Maximum": "",
+        "Minimum": "",
+        "Date": "",
+        "Name": "",
+        "Height": "",
+        "Longitude": "",
+        "Latitude": "",
+        "Number": "",
+        "Credits": ""
+    },
+    "DatePicker":{
+        "Label": "",
+        "StartDate": "",
+        "EndDate": ""
+    }
+}

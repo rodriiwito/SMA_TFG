@@ -1,0 +1,66 @@
+{
+    "Navbar": {
+        "Home": "Home",
+        "Observatories": "Observatories",
+        "Meteors": "Meteors",
+        "Language": "Language"
+    },
+    "Home": {
+        "Welcome": "Welcome!",
+        "Body": "Welcome to the web site of the observations made by the University of Málaga and the Sociedad Malagueña de Astronomía."
+    },
+    "Observatories": {
+        "Table": {
+            "Title": "List of active observatories",
+            "Filters": {
+                "ObservatoryName": "Observatory name"
+            },
+            "Error": "No observatories have been found"
+        }
+    },
+    "Meteors": {
+        "Table": {
+            "Title": "List of seen meteors",
+            "Filters": {
+                "ReportTypes": "Report Types"
+            },
+            "Headers": {
+                "OneStationReports": "One Station Reports",
+                "TwoStationsReports": "Two Stations Reports",
+                "PhotometryReports": "Photometry Reports"
+            },
+            "Error": "Didn't find meteors"
+        }
+    },
+    "Pipes": {
+        "MeteorDataRepresentation": {
+            "Table": "Table",
+            "TypePieChart": "Percentage of type" 
+        },
+        "ReportTypePipe": {
+            "TwoStations":"Two Stations",
+            "Photometry":"Photometry",
+            "OneStation":"One Station"
+        }
+    },
+    "TableUtil": {
+        "ApplyFilters": "Apply Filters",
+        "ShowFilters": "ShowFilters"
+    },
+    "GenericWords": {
+        "Maximum": "Maximum",
+        "Minimum": "Minimum",
+        "Date": "Date",
+        "Name": "Name",
+        "Height": "Height",
+        "Longitude": "Longitude",
+        "Latitude": "Latitude",
+        "Number": "Number",
+        "Credits": "Credits"
+    },
+    "DatePicker":{
+        "Label": "Enter a date range",
+        "StartDate": "Start Date",
+        "EndDate": "End Date"
+    }
+}

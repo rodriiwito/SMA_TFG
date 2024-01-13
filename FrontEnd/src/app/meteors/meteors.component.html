@@ -3,7 +3,7 @@
   [formControl]="dataRepresentationForm.controls.dataRepresentation"
 >
   <option *ngFor="let item of dataRepresentationTypes" [ngValue]="item">
-    {{ item | meteorDataRepresentation }}
+    {{ item | meteorDataRepresentation | translate }}
   </option>
 </select>
 

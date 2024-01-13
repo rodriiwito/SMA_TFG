@@ -30,6 +30,7 @@ import { MeteorsService } from 'src/app/services/meteors/meteors.service';
 import { MeteorsRequest, MeteorsResponse } from 'src/app/services/models';
 import { ReportType } from 'src/app/services/models/enums/report-type';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 export const MY_FORMATS = {
   display: {
@@ -54,6 +55,7 @@ export const MY_FORMATS = {
     MatFormFieldModule,
     MatInputModule,
     ReportTypePipe,
+    TranslateModule,
   ],
   providers: [
     {

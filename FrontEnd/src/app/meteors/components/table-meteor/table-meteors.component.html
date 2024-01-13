@@ -2,7 +2,7 @@
   <div class="container">
     <div class="flex-container-cabecera">
       <button class="btn" (click)="mostrarFiltros(vm.mostrarFiltros)">
-        Show Filters
+        {{ "TableUtil.ShowFilters" | translate }}
       </button>
 
       <button
@@ -11,10 +11,12 @@
         type="submit"
         (click)="aplicarFiltros()"
       >
-        Apply Filters
+        {{ "TableUtil.ApplyFilters" | translate }}
       </button>
 
-      <h5 style="margin-top: 5px; margin-right: auto">List of seen meteors</h5>
+      <h5 style="margin-top: 5px; margin-right: auto">
+        {{ "Meteors.Table.Title" | translate }}
+      </h5>
     </div>
   </div>
 
@@ -23,9 +25,11 @@
       <form [formGroup]="meteorsForm" (ngSubmit)="aplicarFiltros()">
         <div class="row">
           <div class="col">
-            <label for="datePicker">Date</label>
+            <label for="datePicker">{{
+              "GenericWords.Date" | translate
+            }}</label>
             <mat-form-field class="date">
-              <mat-label>Enter a date range</mat-label>
+              <mat-label>{{ "DatePicker.Label" | translate }}</mat-label>
               <mat-date-range-input
                 [rangePicker]="datePicker"
                 disabled
@@ -33,12 +37,12 @@
               >
                 <input
                   matStartDate
-                  placeholder="Start date"
+                  placeholder="{{ 'DatePicker.StartDate' | translate }}"
                   formControlName="minimunDate"
                 />
                 <input
                   matEndDate
-                  placeholder="End date"
+                  placeholder="{{ 'DatePicker.EndDate' | translate }}"
                   formControlName="maximumDate"
                 />
               </mat-date-range-input>
@@ -53,14 +57,14 @@
             </mat-form-field>
           </div>
           <div class="col">
-            <label>Report Types</label>
+            <label>{{ "Meteors.Table.Filters.ReportTypes" | translate }}</label>
             <select
               class="form-select"
               multiple
               [formControl]="meteorsForm.controls.reportTypes"
             >
               <option *ngFor="let item of reportTypes" [ngValue]="item">
-                {{ item | reportType }}
+                {{ item | reportType | translate }}
               </option>
             </select>
           </div>

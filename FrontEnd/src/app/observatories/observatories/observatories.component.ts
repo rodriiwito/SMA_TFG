@@ -14,6 +14,7 @@ import {
   ObservatoriesResponse,
 } from 'src/app/services/models';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-observatories',
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./observatories.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
 })
 export class ObservatoriesComponent {
   private _mostrarFiltros$ = new BehaviorSubject<boolean>(false);

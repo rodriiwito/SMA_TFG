@@ -10,10 +10,10 @@ export class DataRepresentationsMeteorsPipe implements PipeTransform {
     let reportTypeString: string = '';
     switch (value) {
       case DataRepresentationsMeteors.Table:
-        reportTypeString = 'Table';
+        reportTypeString = 'Pipes.MeteorDataRepresentation.Table';
         break;
       case DataRepresentationsMeteors.TypePieChart:
-        reportTypeString = 'Percentage of type';
+        reportTypeString = 'Pipes.MeteorDataRepresentation.TypePieChart';
         break;
     }
     return reportTypeString;

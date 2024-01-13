@@ -18,20 +18,40 @@
     <div class="collapse navbar-collapse" id="navBarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="">{{
+            "Navbar.Home" | translate
+          }}</a>
         </li>
         <li class="nav-item">
           <a
             class="nav-link active"
             aria-current="page"
             routerLink="/observatories"
-            >Observatories</a
+            >{{ "Navbar.Observatories" | translate }}</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/meteors"
-            >Meteors</a
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/meteors"
+            >{{ "Navbar.Meteors" | translate }}</a
           >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ "Navbar.Language" | translate }}
+          </a>
+          <ul class="dropdown-menu">
+            <a class="dropdown-item" (click)="useLanguage('en')">English</a>
+            <a class="dropdown-item" (click)="useLanguage('es')">Español</a>
+          </ul>
         </li>
       </ul>
     </div>
