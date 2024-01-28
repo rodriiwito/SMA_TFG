@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
+  BaseResponse,
   LoginRequest,
   LoginResponse,
   RegisterRequest,
@@ -22,5 +23,12 @@ export class AuthService {
 
   register(request: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.url}/register`, request);
+  }
+
+  verifyEmail(token: string): Observable<BaseResponse> {
+    return this.http.post<BaseResponse>(
+      `${this.url}/verify-email/${token}`,
+      {}
+    );
   }
 }

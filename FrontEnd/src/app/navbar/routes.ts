@@ -3,6 +3,7 @@ import { HomeComponent } from '../home/home.component';
 import { ObservatoriesComponent } from '../observatories/observatories/observatories.component';
 import { MeteorsComponent } from '../meteors/meteors.component';
 import { MeteorDetailComponent } from '../meteors/components/meteor-detail/meteor-detail.component';
+import { UserComponent } from '../user/user.component';
 
 export const USER_ROUTES: Route[] = [
   {
@@ -20,5 +21,9 @@ export const USER_ROUTES: Route[] = [
   {
     path: 'meteors/:id',
     component: MeteorDetailComponent,
+  },
+  {
+    path: 'user',
+    component: UserComponent,
   },
 ];

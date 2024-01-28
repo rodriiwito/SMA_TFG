@@ -1,0 +1,15 @@
+.container{
+    width: 35%;
+    margin-top: 5em;
+ }
+
+.form-group-container{
+    display:grid;
+    grid-auto-flow:row;
+    row-gap: 1em;
+}
+
+.btn{
+    background-color: var(--oficial-color);
+    color: whitesmoke
+  }

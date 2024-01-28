@@ -4,6 +4,7 @@ import { LoginComponent } from './authorization/login/login.component';
 import { authGuard } from './auth-guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './authorization/register/register.component';
+import { verify } from './verify-guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,12 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
+  {
+    path: 'verify-email/:id',
+    canActivate: [verify],
+    children: [],
+  },
+
   {
     path: '',
     canActivate: [authGuard],

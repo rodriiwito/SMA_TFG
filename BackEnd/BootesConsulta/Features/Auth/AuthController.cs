@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using BootesConsulta.Database.Repository.Meteors;
+using BootesConsulta.Helpers;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 namespace BootesConsulta.Features.Auth;
 
 [AllowAnonymous]
@@ -9,9 +12,11 @@ namespace BootesConsulta.Features.Auth;
 public class AuthController : Controller
 {
     private readonly IMediator _mediator;
-    public AuthController(IMediator mediator)
+    private readonly ILoginRepository _loginRepository;
+    public AuthController(IMediator mediator, ILoginRepository loginRepository)
     {
         _mediator = mediator;
+        _loginRepository = loginRepository;
     }
 
     [HttpPost("login")]
@@ -26,5 +31,22 @@ public class AuthController : Controller
     {
         RegisterResponse response = await _mediator.Send(request);
         return Ok(response);
+    }
+
+    [HttpPost("verify-email/{token}")]
+    public async Task<IActionResult> VerifyEmail([FromRoute] string token)
+    {
+        try
+        {
+            await _loginRepository.VerifyUser(new()
+            {
+                Email = TokenHelper.GetEmail(token),
+            });
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        return Ok();
     }
 }

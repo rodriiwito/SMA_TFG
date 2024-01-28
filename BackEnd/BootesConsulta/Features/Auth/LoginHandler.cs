@@ -1,16 +1,14 @@
 ﻿using BootesConsulta.Database.Repository.Meteors;
+using BootesConsulta.Helpers;
 using BootesConsulta.Models;
+using BootesConsulta.Services;
 using MediatR;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace BootesConsulta.Features.Auth;
 
 public class LoginRequest : IRequest<LoginResponse>
 {
-    public string UserName { get; set; }
+    public string Email { get; set; }
     public string Password { get; set; }
 }
 
@@ -24,22 +22,38 @@ public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
 {
     private readonly ILoginRepository _loginRepository;
     private readonly IConfiguration _configuration;
+    private readonly IEmailService _emailService;
 
-    public LoginHandler(ILoginRepository loginRepository, IConfiguration configuration)
+    public LoginHandler(ILoginRepository loginRepository, IConfiguration configuration, IEmailService emailService)
     {
         _loginRepository = loginRepository;
         _configuration = configuration;
+        _emailService = emailService;
     }
 
     public async Task<LoginResponse> Handle(LoginRequest request, CancellationToken cancellationToken)
     {
         bool result;
+        bool? emailConfirmed;
         try
         {
+            emailConfirmed = await _loginRepository.ExistsUser(new()
+            {
+                Email = request.Email,
+            });
+            if (!emailConfirmed.HasValue)
+            {
+                return new()
+                {
+                    Error = true,
+                    Message = "Credentials dont match."
+                };
+            }
+
             result = await _loginRepository.CheckCredentials(new()
             {
                 Password = request.Password,
-                Email = request.UserName,
+                Email = request.Email,
             });
         }
         catch (Exception ex)
@@ -48,20 +62,23 @@ public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
         }
         if (result)
         {
-            string jwtKey = _configuration.GetSection("Jwt:Key").Get<string>();
+            (string, DateTime) tokenInfo = TokenHelper.GenerateToken(request.Email, _configuration);
 
-            SymmetricSecurityKey secretKey = new(Encoding.ASCII.GetBytes(jwtKey));
-            SigningCredentials singingCredentials = new(secretKey, SecurityAlgorithms.HmacSha256);
-
-            JwtSecurityToken tokenOptions = new(
-                claims: new List<Claim>(), expires: DateTime.UtcNow.AddMinutes(30), signingCredentials: singingCredentials);
-            string tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            if (emailConfirmed.HasValue && !emailConfirmed.Value)
+            {
+                _emailService.Send(request.Email, tokenInfo.Item1);
+                return new()
+                {
+                    Error = true,
+                    Message = "Email sent for email validation."
+                };
+            }
             return new LoginResponse()
             {
                 Error = false,
                 Message = null,
-                Token = tokenString,
-                Expiry = tokenOptions.ValidTo
+                Token = tokenInfo.Item1,
+                Expiry = tokenInfo.Item2
             };
         }
         else

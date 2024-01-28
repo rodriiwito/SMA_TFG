@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MeteorsService } from 'src/app/services/meteors/meteors.service';
 import { TypeDistributionResponse } from 'src/app/services/models';
 import { Observable, combineLatest, map, startWith, tap } from 'rxjs';
-import { Labels } from 'src/app/visualizations/models/labels';
-import { PieChartComponent } from 'src/app/visualizations/pie-chart/pie-chart.component';
-import { BarChartComponent } from 'src/app/visualizations/bar-chart/bar-chart.component';
+import { PieChartComponent } from 'src/app/common/visualizations/pie-chart/pie-chart.component';
+import { BarChartComponent } from 'src/app/common/visualizations/bar-chart/bar-chart.component';
+import { Labels } from 'src/app/common/visualizations/models/labels';
 
 @Component({
   selector: 'app-type-distributions',

@@ -1,7 +1,7 @@
 import { BaseResponse } from './base-response';
 
 export interface LoginRequest {
-  userName: string;
+  email: string;
   password: string;
 }
 
